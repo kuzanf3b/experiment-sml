@@ -1,3 +1,5 @@
 kriteria.md
 lainnya.md
 tips-trick.md
+.venv/
+__pycache__/

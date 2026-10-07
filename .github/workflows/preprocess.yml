@@ -1,0 +1,51 @@
+name: Preprocess Telco Churn Dataset
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "dataset/raw/telco_churn_raw.csv"
+      - "preprocessing/automate_kuzanf3b.py"
+      - "requirements.txt"
+      - ".github/workflows/preprocess.yml"
+  pull_request:
+    paths:
+      - "dataset/raw/telco_churn_raw.csv"
+      - "preprocessing/automate_kuzanf3b.py"
+      - "requirements.txt"
+      - ".github/workflows/preprocess.yml"
+
+jobs:
+  preprocess:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Run automated preprocessing
+        run: |
+          python preprocessing/automate_kuzanf3b.py
+
+      - name: Upload preprocessing outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: telco-churn-preprocessed
+          path: |
+            dataset/preprocessed/telco_churn_train.csv
+            dataset/preprocessed/telco_churn_test.csv
+            preprocessing/artifacts/preprocessor.joblib
+            preprocessing/artifacts/feature_names.json
+            preprocessing/artifacts/preprocessing_metadata.json
+          if-no-files-found: error

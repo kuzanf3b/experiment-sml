@@ -1,0 +1,45 @@
+{
+  "dataset_rows_raw": 7043,
+  "dataset_rows_prepared": 7043,
+  "duplicates_removed": 0,
+  "total_charges_blank_as_missing": 11,
+  "test_size": 0.2,
+  "random_state": 42,
+  "train_shape": [
+    5634,
+    46
+  ],
+  "test_shape": [
+    1409,
+    46
+  ],
+  "target_distribution": {
+    "train": 0.2653532126375577,
+    "test": 0.2654364797728886
+  },
+  "numeric_features": [
+    "SeniorCitizen",
+    "tenure",
+    "MonthlyCharges",
+    "TotalCharges"
+  ],
+  "categorical_features": [
+    "gender",
+    "Partner",
+    "Dependents",
+    "PhoneService",
+    "MultipleLines",
+    "InternetService",
+    "OnlineSecurity",
+    "OnlineBackup",
+    "DeviceProtection",
+    "TechSupport",
+    "StreamingTV",
+    "StreamingMovies",
+    "Contract",
+    "PaperlessBilling",
+    "PaymentMethod"
+  ],
+  "processed_feature_count": 45,
+  "processed_feature_names_file": "feature_names.json"
+}
