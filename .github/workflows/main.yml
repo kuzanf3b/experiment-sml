@@ -8,11 +8,13 @@ on:
     paths:
       - "telco_churn_raw.csv"
       - "preprocessing/automate_kuzanf3b.py"
+      - "requirements.txt"
       - ".github/workflows/main.yml"
   pull_request:
     paths:
       - "telco_churn_raw.csv"
       - "preprocessing/automate_kuzanf3b.py"
+      - "requirements.txt"
       - ".github/workflows/main.yml"
 
 jobs:
@@ -30,6 +32,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
 
       - name: Run automated preprocessing
         run: |
