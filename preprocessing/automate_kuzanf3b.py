@@ -31,7 +31,7 @@ def parse_args() -> argparse.Namespace:
         "--input-path",
         type=Path,
         default=None,
-        help="CSV input path. Default: <project-root>/dataset/raw/telco_churn_raw.csv",
+        help="CSV input path. Default: <project-root>telco_churn_raw.csv",
     )
     parser.add_argument(
         "--output-dir",
@@ -65,12 +65,12 @@ def resolve_paths(args: argparse.Namespace) -> dict[str, Path]:
     input_path = (
         args.input_path.resolve()
         if args.input_path is not None
-        else root / "dataset" / "raw" / "telco_churn_raw.csv"
+        else root / "telco_churn_raw.csv"
     )
     output_dir = (
         args.output_dir.resolve()
         if args.output_dir is not None
-        else root / "dataset" / "preprocessed"
+        else root / "preprocessing" / "telco_customer_churn_preprocessing"
     )
     artifacts_dir = (
         args.artifacts_dir.resolve()
