@@ -10,7 +10,7 @@ karakteristik layanan dan akun pelanggan. Target yang digunakan adalah kolom
 - Sumber: [Kaggle — Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
 - Nama file sumber: `WA_Fn-UseC_-Telco-Customer-Churn.csv`
 - Salinan raw yang digunakan project:
-  `dataset/raw/telco_churn_raw.csv`
+  `telco_churn_raw.csv`
 
 Dataset raw dipertahankan apa adanya. Perubahan data hanya dilakukan pada
 notebook eksperimen dan pipeline preprocessing pada task berikutnya.
@@ -19,16 +19,12 @@ notebook eksperimen dan pipeline preprocessing pada task berikutnya.
 
 ```text
 Eksperimen_SML_kuzanf3b/
-├── dataset/
-│   ├── raw/
-│   │   └── telco_churn_raw.csv
-│   └── preprocessed/
-│       └── .gitkeep
+├── telco_churn_raw.csv
 ├── preprocessing/
-│   ├── Template_Eksperimen_MSML.ipynb
 │   ├── Eksperimen_kuzanf3b.ipynb
-│   └── artifacts/
-│       └── .gitkeep
+│   └── telco_customer_churn_preprocessing/
+│       ├── telco_churn_test.csv
+│       └── telco_churn_train.csv
 ├── requirements.txt
 └── README.md
 ```
@@ -58,7 +54,7 @@ jalankan kernel dengan working directory root repository.
 
 ## Konvensi output
 
-Hasil dataset siap latih akan ditulis ke `dataset/preprocessed/`. Artefak
+Hasil dataset siap latih akan ditulis ke `preprocessing/telco_customer_churn_preprocessing/`. Artefak
 pendukung preprocessing seperti metadata dan preprocessor akan ditulis ke
 `preprocessing/artifacts/`.
 
@@ -66,8 +62,8 @@ pendukung preprocessing seperti metadata dan preprocessor akan ditulis ke
 
 Notebook menghasilkan dua file untuk pemeriksaan awal:
 
-- `dataset/preprocessed/telco_churn_train.csv`
-- `dataset/preprocessed/telco_churn_test.csv`
+- `preprocessing/telco_customer_churn_preprocessing/telco_churn_train.csv`
+- `preprocessing/telco_customer_churn_preprocessing/telco_churn_test.csv`
 
 Preprocessing yang diterapkan adalah konversi `TotalCharges` ke numerik,
 imputasi median untuk fitur numerik, imputasi modus untuk fitur kategorikal,
@@ -95,22 +91,22 @@ Opsional (override path):
 
 ```bash
 python preprocessing/automate_kuzanf3b.py \
-  --input-path dataset/raw/telco_churn_raw.csv \
-  --output-dir dataset/preprocessed \
+  --input-path telco_churn_raw.csv \
+  --output-dir preprocessing/telco_customer_churn_preprocessing \
   --artifacts-dir preprocessing/artifacts
 ```
 
 Output otomatis:
 
-- `dataset/preprocessed/telco_churn_train.csv`
-- `dataset/preprocessed/telco_churn_test.csv`
+- `preprocessing/telco_customer_churn_preprocessing/telco_churn_train.csv`
+- `preprocessing/telco_customer_churn_preprocessing/telco_churn_test.csv`
 - `preprocessing/artifacts/preprocessor.joblib`
 - `preprocessing/artifacts/feature_names.json`
 - `preprocessing/artifacts/preprocessing_metadata.json`
 
 ## Workflow preprocessing (GitHub Actions)
 
-Workflow ada di `.github/workflows/preprocess.yml` dan akan berjalan saat:
+Workflow ada di `.github/workflows/main.yml` dan akan berjalan saat:
 
 - `workflow_dispatch` (manual trigger),
 - push/pull request yang menyentuh dataset raw, script preprocessing, requirements, atau file workflow.
